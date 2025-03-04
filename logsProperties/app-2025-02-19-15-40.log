@@ -1,0 +1,3 @@
+[INFO ] 2025-02-19 15:40:00.063 [main] PageObjectModelTest3Log4j - Second checkout page
+[DEBUG] 2025-02-19 15:40:00.076 [main] PageObjectModelTest3Log4j - ********** Starting testOrderCompletion **********
+[INFO ] 2025-02-19 15:40:00.146 [main] PageObjectModelTest3Log4j - Completed order

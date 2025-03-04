@@ -1,0 +1,18 @@
+2025-02-19 11:04:58 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Navigate to site https://www.saucedemo.com/
+2025-02-19 11:04:59 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testLogin **********
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - User logger in successfully
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - {password=secret_sauce, user=standard_user}
+2025-02-19 11:04:59 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testAddBackpackToCart **********
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Added Sauce Labs Backpack to cart
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Navigated back to the products page after adding product
+2025-02-19 11:04:59 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testAddFleeceJacketToCart **********
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Added Sauce Labs Fleece Jacket to cart
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Navigated back to the products page after adding the second product
+2025-02-19 11:04:59 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testCart **********
+2025-02-19 11:04:59 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Validated items in cart
+2025-02-19 11:04:59 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testCheckout **********
+2025-02-19 11:05:00 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Completed first checkout page
+2025-02-19 11:05:00 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testFinalCheckout **********
+2025-02-19 11:05:00 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Second checkout page
+2025-02-19 11:05:00 [main] DEBUG com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - ********** Starting testOrderCompletion **********
+2025-02-19 11:05:00 [main] INFO  com.loonycorn.learningselenium.SauceDemoCheckoutTestLog4j - Completed order

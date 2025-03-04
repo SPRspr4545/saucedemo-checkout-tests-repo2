@@ -1,0 +1,36 @@
+[DEBUG] 2025-02-19 15:37:23.232 [main] PageObjectModelTest3Log4j - Navigate to site https://www.saucedemo.com/
+[DEBUG] 2025-02-19 15:37:23.311 [main] PageObjectModelTest3Log4j - ********** Starting testLogin **********
+[INFO ] 2025-02-19 15:37:23.559 [main] PageObjectModelTest3Log4j - User logger in successfully
+[INFO ] 2025-02-19 15:37:23.560 [main] PageObjectModelTest3Log4j - {user=standard_user, password=secret_sauce}
+[DEBUG] 2025-02-19 15:37:23.661 [main] PageObjectModelTest3Log4j - ********** Starting testAddBackpackToCart **********
+[INFO ] 2025-02-19 15:37:23.798 [main] PageObjectModelTest3Log4j - Added Sauce Labs Backpack to cart
+[INFO ] 2025-02-19 15:37:23.811 [main] PageObjectModelTest3Log4j - Navigated back to the products page after adding product
+[DEBUG] 2025-02-19 15:37:23.819 [main] PageObjectModelTest3Log4j - ********** Starting testAddFleeceJacketToCart **********
+[INFO ] 2025-02-19 15:37:23.942 [main] PageObjectModelTest3Log4j - Added Sauce Labs Fleece Jacket to cart
+[INFO ] 2025-02-19 15:37:23.957 [main] PageObjectModelTest3Log4j - Navigated back to the products page after adding the second product
+[DEBUG] 2025-02-19 15:37:23.963 [main] PageObjectModelTest3Log4j - ********** Starting testCart **********
+[INFO ] 2025-02-19 15:37:24.079 [main] PageObjectModelTest3Log4j - Validated items in cart
+[DEBUG] 2025-02-19 15:37:24.084 [main] PageObjectModelTest3Log4j - ********** Starting testCheckout **********
+[INFO ] 2025-02-19 15:37:24.320 [main] PageObjectModelTest3Log4j - Completed first checkout page
+[DEBUG] 2025-02-19 15:37:24.325 [main] PageObjectModelTest3Log4j - ********** Starting testFinalCheckout **********
+[INFO ] 2025-02-19 15:37:24.436 [main] PageObjectModelTest3Log4j - Second checkout page
+[DEBUG] 2025-02-19 15:37:24.442 [main] PageObjectModelTest3Log4j - ********** Starting testOrderCompletion **********
+[INFO ] 2025-02-19 15:37:24.513 [main] PageObjectModelTest3Log4j - Completed order
+[DEBUG] 2025-02-19 15:37:36.814 [main] PageObjectModelTest3Log4j - Navigate to site https://www.saucedemo.com/
+[DEBUG] 2025-02-19 15:37:36.879 [main] PageObjectModelTest3Log4j - ********** Starting testLogin **********
+[INFO ] 2025-02-19 15:37:37.094 [main] PageObjectModelTest3Log4j - User logger in successfully
+[INFO ] 2025-02-19 15:37:37.096 [main] PageObjectModelTest3Log4j - {password=secret_sauce, user=standard_user}
+[DEBUG] 2025-02-19 15:37:37.228 [main] PageObjectModelTest3Log4j - ********** Starting testAddBackpackToCart **********
+[INFO ] 2025-02-19 15:37:37.369 [main] PageObjectModelTest3Log4j - Added Sauce Labs Backpack to cart
+[INFO ] 2025-02-19 15:37:37.383 [main] PageObjectModelTest3Log4j - Navigated back to the products page after adding product
+[DEBUG] 2025-02-19 15:37:37.390 [main] PageObjectModelTest3Log4j - ********** Starting testAddFleeceJacketToCart **********
+[INFO ] 2025-02-19 15:37:37.515 [main] PageObjectModelTest3Log4j - Added Sauce Labs Fleece Jacket to cart
+[INFO ] 2025-02-19 15:37:37.525 [main] PageObjectModelTest3Log4j - Navigated back to the products page after adding the second product
+[DEBUG] 2025-02-19 15:37:37.532 [main] PageObjectModelTest3Log4j - ********** Starting testCart **********
+[INFO ] 2025-02-19 15:37:37.660 [main] PageObjectModelTest3Log4j - Validated items in cart
+[DEBUG] 2025-02-19 15:37:37.668 [main] PageObjectModelTest3Log4j - ********** Starting testCheckout **********
+[INFO ] 2025-02-19 15:37:37.942 [main] PageObjectModelTest3Log4j - Completed first checkout page
+[DEBUG] 2025-02-19 15:37:37.948 [main] PageObjectModelTest3Log4j - ********** Starting testFinalCheckout **********
+[INFO ] 2025-02-19 15:37:38.078 [main] PageObjectModelTest3Log4j - Second checkout page
+[DEBUG] 2025-02-19 15:37:38.083 [main] PageObjectModelTest3Log4j - ********** Starting testOrderCompletion **********
+[INFO ] 2025-02-19 15:37:38.156 [main] PageObjectModelTest3Log4j - Completed order
