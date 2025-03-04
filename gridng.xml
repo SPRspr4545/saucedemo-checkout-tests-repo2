@@ -20,7 +20,7 @@
         </classes>
     </test>
     <test name="Second Selenium GRID Test">
-        <parameter name="browser" value="chrome"/> <!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp() -->
+        <parameter name="browser" value="chrome"/> <!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
@@ -36,7 +36,7 @@
         </classes>
     </test>
     <test name="Third Selenium GRID Test">
-        <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp() -->
+        <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
@@ -52,7 +52,7 @@
         </classes>
     </test>
     <test name="Fourth Selenium GRID Test">
-        <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp() -->
+        <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
