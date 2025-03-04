@@ -1,0 +1,3 @@
+#!/bin/bat
+
+mvn test

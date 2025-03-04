@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tables Bootstrap">
+    <title>Dynamic Dropdown Example</title>
+    <meta name="theme-color" content="#712cf9">
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <main class="col-md-12 col-lg-12 px-md-12">
+            <h2>Dynamic Dropdown Example</h2>
+            <div class="table-responsive small">
+                <h3>Select a Category</h3>
+                <!-- Le gestionnaire onchange appellera la fonction JavaScript updateSubcategories() -->
+                <select id="categoryDropdown" onchange="updateSubcategories()" class="form-select form-select-lg mb-3"
+                        aria-label="Large select example">
+                    <option value="" selected>-- Select a Category --</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="books">Books</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+        </main>
+
+        <main class="col-md-12 col-lg-12 px-md-12">
+            <div class="table-responsive small">
+                <h3>Subcategories</h3>
+                <!-- L'attribut multiple en fait un élément à selection multiple -->
+                <select id="subcategoryDropdown" disabled multiple class="form-select form-select-lg mb-3"
+                        aria-label="Large select example">
+                    <option value="" selected>-- Select a Subcategory --</option>
+                </select>
+            </div>
+        </main>
+    </div>
+</div>
+<script>
+    const subcategories = {
+        electronics: ['Laptops', 'Smartphones', 'tablets', 'Cameras'],
+        clothing: ['Men\s Wear', 'Women\'s Wear', 'Kids Wear', 'Accessories'],
+        books: ['Fiction', 'Non-Fiction', 'Textbooks', 'Comics'],
+        sports: ['Team Sports', 'Individual Sport', 'Outdoor Activities', 'Fitness Equipement']
+    };
+
+    function updateSubcategories() {
+        const categoryDropdown = document.getElementById('categoryDropdown');
+        const subcategoryDropdown = document.getElementById('subcategoryDropdown');
+        const selectedCategory = categoryDropdown.value;
+
+        subcategoryDropdown.innerHTML = '<option value="">-- Select a Subcategory --</option>';
+        subcategoryDropdown.disabled = !selectedCategory;
+
+        if (selectedCategory) {
+            const subCategories = subcategories[selectedCategory];
+            for (const subcategory of subCategories) {
+                const option = document.createElement('option');
+                option.value = subcategory.toLowerCase().replace(/\s/g, '-');
+                option.textContent = subcategory;
+                subcategoryDropdown.appendChild(option);
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

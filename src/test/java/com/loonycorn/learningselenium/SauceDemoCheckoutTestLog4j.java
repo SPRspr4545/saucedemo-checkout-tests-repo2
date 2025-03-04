@@ -1,0 +1,273 @@
+package com.loonycorn.learningselenium;
+
+import com.loonycorn.learningselenium.pages.*;
+import com.loonycorn.learningselenium.utils.DriverFactory;
+import org.apache.logging.log4j.core.appender.ConsoleAppender;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+//************************
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilder;
+import org.apache.logging.log4j.core.config.builder.api.ConfigurationBuilderFactory;
+import org.apache.logging.log4j.core.config.builder.impl.BuiltConfiguration;
+import org.apache.logging.log4j.core.config.Configurator;
+
+import java.util.Map;
+
+public class SauceDemoCheckoutTestLog4j {
+
+    // Bloc d'initialisation pour configurer les propriétés de journalisation de Log4j
+    static {
+        // j'instancie un ConfigurationBuilder qui est utilisé pour créer un BuiltConfiguration
+        ConfigurationBuilder<BuiltConfiguration> builder = ConfigurationBuilderFactory.newConfigurationBuilder();
+        // Ce générateur définira tous les composants du système de log
+
+        builder.setStatusLevel(Level.INFO); // réglage du StatusLevel du générateur sur Level.INFO
+        builder.setConfigurationName("BuilderTest");
+
+        // Define CONSOLE Appender
+        builder.add(builder.newAppender("stdout", "console")
+                .addAttribute("target", ConsoleAppender.Target.SYSTEM_OUT)
+                .add(builder.newLayout("PatternLayout")
+                        .addAttribute("pattern", "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n")));
+
+        // Define a FILE appender
+        builder.add(builder.newAppender("logfile","File")
+                .addAttribute("fileName","logsStatic/app.log")
+                .add(builder.newLayout("PatternLayout")
+                        .addAttribute("pattern", "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n")));
+
+        // 2 enregistreurs
+        builder.add(builder.newRootLogger(Level.INFO)
+                .add(builder.newAppenderRef("stdout"))); // ...vers l'Appender de la console "stdout"
+
+        builder.add(builder.newLogger(SauceDemoCheckoutTestLog4j.class.getName(), Level.DEBUG)
+                .add(builder.newAppenderRef("logfile")));
+
+        // Build the configuration
+        BuiltConfiguration config = builder.build(); // enfin on crée la configuration...
+        Configurator.initialize(config); // ...que l'on applique à Log4j
+    }
+
+    // Commencer par instancier un enregistreur en spécifiant ma Class dans laquelle l'utiliser
+    private static final Logger logger = LogManager.getLogger(SauceDemoCheckoutTestLog4j.class);
+    // on ne spécifie aucun type de configuration pour cet enregistreur
+    // Log4j utilisera une conf par défaut pour n'enregistrer que les messages de niveau ERROR ou supérieur
+
+    private static final String SITE = "https://www.saucedemo.com/";
+
+    private WebDriver driver;
+
+    // variables membres pour interagir avec les Class correspondantes aux pages du SITE de test
+    private LoginPage3 loginPage;
+    private ProductsPage3 productsPage;
+    private ProductPage3 productPage;
+    private CartPage3 cartPage;
+    private CheckoutPage3 checkoutPage;
+    private FinalCheckoutPage3 finalCheckoutPage;
+    private OrderCompletionPage3 orderCompletionPage;
+
+    @BeforeClass
+    public void setUp() {
+        logger.trace("Setting up Webdriver...");
+
+        driver = DriverFactory.createDriver(DriverFactory.BrowserType.CHROME); // instance du Driver
+
+        logger.trace("Setting up page classes for the Page Object Model...");
+
+        // transmet le Driver aux Constructeurs pour les Class correspondantes
+        loginPage = new LoginPage3(driver);
+        productsPage = new ProductsPage3(driver);
+        productPage = new ProductPage3(driver);
+        cartPage = new CartPage3(driver);
+        checkoutPage = new CheckoutPage3(driver);
+        finalCheckoutPage = new FinalCheckoutPage3(driver);
+        orderCompletionPage = new OrderCompletionPage3(driver);
+
+        logger.trace("Completed set up of Webdriver and page classes...");
+
+        driver.get(SITE);
+
+        // les {} sont un espace réservé dans lequel on peut saisir des paramètres de logging...
+        logger.debug("Navigate to site {}", SITE); // ...ici ce paramètre est le nom du SITE
+    }
+
+    private static void delay() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void testLogin() {
+        logger.debug("********** Starting testLogin **********");
+
+        loginPage.login("standard_user", "secret_sauce");
+
+        if (!productsPage.isPageOpened()) {
+            logger.error("Login failed! Incorrect username or password.");
+        }
+
+        Assert.assertTrue(productsPage.isPageOpened(), "Login failed!");
+
+        logger.info("User logger in successfully");
+        // Log4j prend également en charge les arguments de saisie complexes :
+        logger.info(Map.of("user", "standard_user", "password", "secret_sauce")); // j'enregistre une Map<user,password>
+    }
+
+    @Test(dependsOnMethods = "testLogin")
+    public void testAddBackpackToCart() {
+        logger.debug("********** Starting testAddBackpackToCart **********");
+
+        productsPage.navigateToProductPage("Sauce Labs Backpack");
+
+        productPage.addToCart();
+
+        if (!productPage.getButtonText().equals("Remove")) {
+            logger.warn("Failed to Sauce Labs Backpack to cart.");
+        }
+
+        Assert.assertEquals(productPage.getButtonText(), "Remove",
+                "Button text did not change");
+
+        logger.info("Added Sauce Labs Backpack to cart");
+
+        driver.navigate().back();
+
+        logger.info("Navigated back to the products page after adding product");
+    }
+
+    @Test(dependsOnMethods = "testAddBackpackToCart")
+    public void testAddFleeceJacketToCart() {
+        logger.debug("********** Starting testAddFleeceJacketToCart **********");
+
+        productsPage.navigateToProductPage("Sauce Labs Fleece Jacket");
+
+        productPage.addToCart();
+
+        if (!productPage.getButtonText().equals("Remove")) {
+            logger.warn("Failed to Sauce Fleece Jacket to cart.");
+        }
+
+        Assert.assertEquals(productPage.getButtonText(),"Remove",
+                "Button text did not change");
+
+        logger.info("Added Sauce Labs Fleece Jacket to cart");
+
+        driver.navigate().back();
+
+        logger.info("Navigated back to the products page after adding the second product");
+    }
+
+    @Test(dependsOnMethods = {"testAddBackpackToCart", "testAddFleeceJacketToCart"})
+    public void testCart() {
+        logger.debug("********** Starting testCart **********");
+
+        // méthode dans la Class ProductsPage pour accéder au panier
+        productsPage.mavigateToCart();
+
+        if (!cartPage.isPageOpened()) {
+            logger.fatal("Cart page not loaded!");
+        }
+
+        Assert.assertTrue(cartPage.isPageOpened(),"Cart page not loaded"); // la page est ouverte
+        Assert.assertEquals(cartPage.getCartItemCount(),"2","Incorrect number of items in the cart"); // nombre de paniers
+        Assert.assertEquals(cartPage.getContinueButtonText(), "Checkout",
+                "Incorrect button text on the cart page"); // bouton "checkout/Commander"
+
+        if (!cartPage.productInCart("Sauce Labs Backpack") || !cartPage.productInCart("Sauce Labs Fleece Jacket")) {
+            logger.warn("Either {} or {} not found in cart","Sauce Labs Backpack", "Sauce Labs Fleece Jacket");
+        }
+
+        Assert.assertTrue(cartPage.productInCart("Sauce Labs Backpack")); // vérifie si le produit est dans le panier
+        Assert.assertTrue(cartPage.productInCart("Sauce Labs Fleece Jacket")); // vérifie si le produit est dans le panier
+
+        logger.info("Validated items in cart");
+    }
+
+    @Test(dependsOnMethods = "testCart")
+    public void testCheckout() {
+        logger.debug("********** Starting testCheckout **********");
+
+        cartPage.continuesCheckout(); // accède à la page de paiement
+
+        if (!checkoutPage.isPageOpened()) {
+            logger.error("First checkout page not loaded!");
+        }
+
+        Assert.assertTrue(checkoutPage.isPageOpened(),"Checkout page not loaded"); // vérifie que la page est ouverte
+        checkoutPage.enterDetails("Peter","Hank","45430"); // Saisie les nom, prénom et zip code
+
+        // vérifie les valeurs des champs saisie précédemment
+        Assert.assertEquals(checkoutPage.getFirstNameFieldValue(),"Peter",
+                "First name field value iis incorrect");
+        Assert.assertEquals(checkoutPage.getlastNameFieldValue(),"Hank",
+                "Last name field value iis incorrect");
+        Assert.assertEquals(checkoutPage.getzipCodeFieldValue(),"45430",
+                "Zip code field value iis incorrect");
+
+        logger.info("Completed first checkout page");
+    }
+
+    @Test(dependsOnMethods = "testCheckout")
+    public void testFinalCheckout() {
+        logger.debug("********** Starting testFinalCheckout **********");
+
+        checkoutPage.continueCheckout(); // la Class CheckoutPage contient la méthode continueCheckout() pour accéder à la "checkout-step-two.html"
+
+        if (!finalCheckoutPage.isPageOpened()) {
+            logger.error("Second checkout page not loaded!");
+        }
+
+        Assert.assertTrue(finalCheckoutPage.isPageOpened(),
+                "Checkout page not loaded");
+        Assert.assertEquals(finalCheckoutPage.getPaymentInfoValue(),
+                "SauceCard #31337");
+        Assert.assertEquals(finalCheckoutPage.getShippingInfoValue(),
+                "Free Pony Express Delivery!");
+        Assert.assertEquals(finalCheckoutPage.getTotalLabel(),
+                "Total: $86.38");
+
+        logger.info("Second checkout page");
+    }
+
+    @Test(dependsOnMethods = "testFinalCheckout")
+    public void testOrderCompletion() {
+        logger.debug("********** Starting testOrderCompletion **********");
+
+        finalCheckoutPage.finishCheckout();
+
+        if (!orderCompletionPage.isPageOpened()) {
+            logger.error("Final checkout page not loaded!");
+        }
+
+        Assert.assertEquals(orderCompletionPage.getHeaderTest(),
+                "Thank you for your order!");
+        Assert.assertEquals(orderCompletionPage.getBodyText(),
+                "Your order has been dispatched, and will arrive just as fast as the pony can get there!");
+
+        logger.info("Completed order");
+    }
+
+    @AfterClass
+    public void tearDown() {
+        logger.trace("Quitting WebDriver...");
+
+        if (driver != null) {
+            driver.quit();
+            //driver.close(); // ferme les onglets individuellement
+        }
+
+        logger.trace("Quit WebDriver...");
+    }
+}
+

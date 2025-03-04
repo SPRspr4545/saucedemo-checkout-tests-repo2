@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Links Demo</title>
+    <script>
+        function delayRedirect(url) {
+            setTimeout(function() {
+                window.location.href = url;
+            }, 15000);
+        }
+    </script>
+</head>
+<body>
+<h1>Broken Links Demo</h1>
+<ul>
+    <li><a href="http://the-internet.herokuapp.com/login">Working Link 1</a></li>
+    <li><a href="http://the-internet.herokuapp.com/abtest">Working Link 2</a></li>
+    <li><a href="http://the-internet.herokuapp.com/nonexistingpage1">Broken Link 1</a></li>
+    <li><a href="http://the-internet.herokuapp.com/nonexistingpage2">Broken Link 2</a></li>
+    <li><a href="http://the-internet.herokuapp.com/challenging_dom">Working Link 3</a></li>
+    <li><a href="http://the-internet.herokuapp.com/nonexistingpage3">Broken Link 3</a></li>
+    <li><a href="http://the-internet.herokuapp.com/checkboxes">Working Link 4</a></li>
+    <li><a href="http://the-internet.herokuapp.com/nonexistingpage4">Broken Link 4</a></li>
+    <li><a href="http://the-internet.herokuapp.com/dropdown">Working Link 5</a></li>
+    <li><a href="http://the-internet.herokuapp.com/nonexistingpage5">Broken Link 5</a></li>
+    <!--li><a href="#" onclick="delayRedirect('http://the-internet.herokuapp.com/nonexistingpage5')">Broken Link 5 (with delay)</a></li-->
+</ul>
+</body>
+</html>
