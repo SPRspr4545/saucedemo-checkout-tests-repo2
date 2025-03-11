@@ -2,6 +2,7 @@ package com.loonycorn.learningselenium;
 
 import com.loonycorn.learningselenium.pages.*;
 import com.loonycorn.learningselenium.utils.DriverFactory;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,7 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import org.testng.annotations.Parameters; //**********************
 
 //************* GRID
@@ -39,6 +39,8 @@ public class PageObjectModelTest3Grid1 {
     private FinalCheckoutPage3 finalCheckoutPage;
     private OrderCompletionPage3 orderCompletionPage;
 
+    //@Parameters({"browser", "platform"})
+    //public void setUp(String browser, String platform)throws MalformedURLException {
     @Parameters("browser") //*********** cette annotation indique que la méthode de configuration attend un argument d'entrée avec le paramètre du navigateur
     @BeforeClass
     public void setUp(String browser)throws MalformedURLException {
@@ -69,8 +71,19 @@ public class PageObjectModelTest3Grid1 {
                 throw new IllegalArgumentException("Unsupported browser type: " + browser);
         }
 
+        // précise la platform de test (macOS/Windows):  ANY = n'importe lequel
+        capabilities.setPlatform(Platform.ANY);
+        //if (platform.equalsIgnoreCase("mac")) {
+        //    capabilities.setPlatform(Platform.MAC);
+        //} else if (platform.equalsIgnoreCase("windows")) {
+        //    capabilities.setPlatform(Platform.WINDOWS);
+        //} else {
+        //    throw new IllegalArgumentException("Unsupported platform: " + platform);
+        //}
+
         //String gridUrl = "http://192.168.1.67:4444"; // l'URL de Selenium GRID "java -jar selenium-server-4.28.1.jar standalone --config config.toml --selenium-manager true"
-        String gridUrl = "http://10.152.251.145:4444"; // l'URL de Selenium GRID "java -jar selenium-server-4.28.1.jar standalone --config config.toml --selenium-manager true"
+        //String gridUrl = "http://10.152.251.145:4444"; // l'URL de Selenium GRID "java -jar selenium-server-4.28.1.jar standalone --config config.toml --selenium-manager true"
+        String gridUrl = "http://localhost:4006";
 
         driver = new RemoteWebDriver(new URL(gridUrl), capabilities); // instancie le RemoteWebDriver et précise la gridUrl et les fonctionnalités du navigateur
         driver.manage().window().maximize();

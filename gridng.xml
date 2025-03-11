@@ -5,6 +5,7 @@
 <suite name="All Selenium GRID Test Suite" parallel="tests" thread-count="4">
     <test name="First Selenium GRID Test">
         <parameter name="browser" value="edge"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
+        <!--<parameter name="platform" value="windows"/> @Parameters({"browser", "platform"})-->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
@@ -21,6 +22,7 @@
     </test>
     <test name="Second Selenium GRID Test">
         <parameter name="browser" value="chrome"/> <!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
+        <!--<parameter name="platform" value="windows"/> //@Parameters({"browser", "platform"})-->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
@@ -37,6 +39,7 @@
     </test>
     <test name="Third Selenium GRID Test">
         <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
+        <!--<parameter name="platform" value="windows"/> //@Parameters({"browser", "platform"})-->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
@@ -53,6 +56,7 @@
     </test>
     <test name="Fourth Selenium GRID Test">
         <parameter name="browser" value="firefox"/><!-- Correspond à l'annotation @Parameters("browser") de la méthode SetUp(String browser) -->
+        <!--<parameter name="platform" value="mac"/> //@Parameters({"browser", "platform"})-->
         <classes>
             <class name="com.loonycorn.learningselenium.PageObjectModelTest3Grid1">
                 <methods>
