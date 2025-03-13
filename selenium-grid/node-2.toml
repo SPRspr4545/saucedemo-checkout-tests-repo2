@@ -1,0 +1,30 @@
+[server]
+host = "localhost"
+port = 6666
+max-threads = 6
+
+[node]
+detect-drivers = false
+
+[[node.driver-configuration]]
+display-name = "Chrome"
+stereotype = "{\"browserName\": \"chrome\"}"
+hub = "http://localhost:9999"
+max-sessions = 1
+
+[[node.driver-configuration]]
+display-name = "Firefox"
+stereotype = "{\"browserName\": \"firefox\"}"
+hub = "http://localhost:9999"
+max-sessions = 2
+
+[logging]
+log-encoding = "UTF-8"
+log-file = "nodeTwoLog.log"
+log-level = "INFO"
+log-timestamp-format = "dd-MM-yyyy HH:mm:ss.SSS"
+plain-logs = true
+
+[events]
+publish = "tcp://*:9992"
+subscribe = "tcp://*:9993"
