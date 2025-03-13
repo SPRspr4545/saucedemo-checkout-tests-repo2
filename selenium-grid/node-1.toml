@@ -1,0 +1,25 @@
+[server]
+host = "localhost"
+port = 5555
+max-threads = 1
+
+[node]
+detect-drivers = false
+
+[[node.driver-configuration]]
+display-name = "Chrome"
+stereotype = "{\"browserName\": \"chrome\"}"
+hub = "http://localhost:9999"
+max-sessions = 1
+
+[logging]
+log-encoding = "UTF-8"
+log-file = "nodeOneLog.log"
+log-level = "INFO"
+log-timestamp-format = "dd-MM-yyyy HH:mm:ss.SSS"
+plain-logs = true
+
+[events]
+publish = "tcp://*:9992"
+subscribe = "tcp://*:9993"
+
