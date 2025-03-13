@@ -51,19 +51,22 @@ public class PageObjectModelTest3Grid1 {
         switch (browser.toLowerCase()) { // active le nom du browser en minuscule
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless"); // recommandé lorsque les tests sont exécutés sur Selenium GRID, car il se peut que l'écran de la machine distante ne soit pas connecté
+                //chromeOptions.addArguments("--headless"); // recommandé lorsque les tests sont exécutés sur Selenium GRID, car il se peut que l'écran de la machine distante ne soit pas connecté
+                chromeOptions.addArguments("--start-maximized");
                 capabilities.setBrowserName("chrome");
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
+                //firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--start-maximized");
                 capabilities.setBrowserName("firefox");
                 capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
                 break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless");
+                //edgeOptions.addArguments("--headless");
+                edgeOptions.addArguments("--start-maximized");
                 capabilities.setBrowserName("edge");
                 capabilities.setCapability(EdgeOptions.CAPABILITY, edgeOptions);
                 break;
@@ -73,17 +76,10 @@ public class PageObjectModelTest3Grid1 {
 
         // précise la platform de test (macOS/Windows):  ANY = n'importe lequel
         capabilities.setPlatform(Platform.ANY);
-        //if (platform.equalsIgnoreCase("mac")) {
-        //    capabilities.setPlatform(Platform.MAC);
-        //} else if (platform.equalsIgnoreCase("windows")) {
-        //    capabilities.setPlatform(Platform.WINDOWS);
-        //} else {
-        //    throw new IllegalArgumentException("Unsupported platform: " + platform);
-        //}
 
         //String gridUrl = "http://192.168.1.67:4444"; // l'URL de Selenium GRID "java -jar selenium-server-4.28.1.jar standalone --config config.toml --selenium-manager true"
         //String gridUrl = "http://10.152.251.145:4444"; // l'URL de Selenium GRID "java -jar selenium-server-4.28.1.jar standalone --config config.toml --selenium-manager true"
-        String gridUrl = "http://localhost:4006";
+        String gridUrl = "http://localhost:4444";
 
         driver = new RemoteWebDriver(new URL(gridUrl), capabilities); // instancie le RemoteWebDriver et précise la gridUrl et les fonctionnalités du navigateur
         driver.manage().window().maximize();
